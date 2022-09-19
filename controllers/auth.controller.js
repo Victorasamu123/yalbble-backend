@@ -1,5 +1,6 @@
 const authModel = require("../models/auth.model");
 const nodemailer = require('nodemailer');
+const jwt = require("jsonwebtoken");
 const PASSWORD= process.env.PASSWORD
 const signup=(req,res)=>{
     console.log(req.body);
@@ -66,6 +67,34 @@ const transporter = nodemailer.createTransport({
     }
   });
 }
+const signin=(req,res)=>{
+    console.log(req.body);
+    let {email,password}=req.body
+    authModel.findOne({email:req.body.email},(err,result)=>{
+        if(err){
+            res.send({message:"Server Error",status:false})
+        }else{
+            if(result){
+                result.validatePassword(password,(err,same)=>{
+                    if(err){
+                        res.send({message:"Server Error",status:false})
+                    }else{
+                        if(same){
+                            let token =jwt.sign({email},"nodejs",{expiresIn:"2h"})
+                            console.log(token)
+                            res.send({message:"User Signed in Successfully",status:true,token,user_id:result._id,statuss:result.status})
+                        }else{
+                            res.send({message:"Wrong Password",status:false})
+                        }
+                    }
+                })
+                // res.send({message:"Email Exists",status:true})
+            }else{
+                res.send({message:"Wrong Email",status:false})
+            }
+        }
+    })
+}
 
-module.exports={signup,email
+module.exports={signup,email,signin
 }

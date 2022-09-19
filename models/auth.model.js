@@ -18,6 +18,15 @@ authSchema.pre("save",function(next){
         }
     })
 })
-
+authSchema.methods.validatePassword = function(password,callback){
+    bcrypt.compare(password,this.password,(err,same)=>{
+        console.log(same)
+        if(!err){
+            callback(err,same)
+        }else{
+            next()
+        }
+    })
+}
 const authModel= mongoose.model("auth-signup-users",authSchema);
 module.exports=authModel;
