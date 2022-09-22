@@ -9,8 +9,10 @@ const signup=(req,res)=>{
             console.log(err)
             res.send({message:"signup not succesful",status:false})
         }else{
-            if(result){
-                res.send({message:"email already exists",status:false})
+            if(result.email){
+                res.send({message:"email has already being used",status:false})
+            }else if(result.username){
+                res.send({message:"username already exists",status:false})
             }else{
                 let form = authModel(req.body);
                 form.save((err)=>{
@@ -30,8 +32,8 @@ const email =(req,res)=>{
     console.log(req.body.email)
 
     const emailMessage = ` <center>
-    <div style="background-color:rgb(28,29,61); width: fit-content;height:fit-content;">
-      <h1 style="color: white;">welcome to myQuiz app</h1>
+    <div>
+      <h1 style="color: white;">welcome to yalvic app</h1>
       <div>
         Dear ${req.body.lastname} ${req.body.firstname}
       </div style="color: white;">
