@@ -4,30 +4,35 @@ const jwt = require("jsonwebtoken");
 const PASSWORD= process.env.PASSWORD
 let image=""
 const signup=(req,res)=>{
-    let iii="jjfjfjf"
-    image=iii
-    console.log(req.body,image);
+    // let iii="jjfjfjf"
+    // image=iii
+    console.log(req.body);
     authModel.findOne({email:req.body.email,username:req.body.username},(err,result)=>{
         if(err){
             console.log(err)
             res.send({message:"signup not succesful",status:false})
         }else{
             console.log(result)
-            // if(result.email){
-            //     res.send({message:"email has already being used",status:false})
-            // }else if(result.username){
-            //     res.send({message:"username already exists",status:false})
-            // }else{
-            //     let form = authModel(req.body,image);
-            //     form.save((err)=>{
-            //         if(err){
-            //             console.log(err)
-            //             res.send({message:"signup not succesful",status:false})
-            //         }else{
-            //             res.send({message:"signup successfuul",status:true})
-            //         }
-            //     })
-            // }
+            if(!result){
+                let form = authModel(req.body);
+                form.save((err)=>{
+                    if(err){
+                        console.log(err)
+                        res.send({message:"signup not succesful",status:false})
+                    }else{
+                        res.send({message:"signup successfuul",status:true})
+                    }
+                })
+            }else if(result){
+                if(result.email||result.username){
+                if(result.email){
+                    res.send({message:"email has already being used",status:false})
+                }
+                if(result.username){
+                    res.send({message:"username already exists",status:false})
+                } 
+            }
+        }
         }
     })
     
