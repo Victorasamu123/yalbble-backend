@@ -2,28 +2,32 @@ const authModel = require("../models/auth.model");
 const nodemailer = require('nodemailer');
 const jwt = require("jsonwebtoken");
 const PASSWORD= process.env.PASSWORD
+let image=""
 const signup=(req,res)=>{
-    console.log(req.body);
-    authModel.findOne({email:req.body.email},(err,result)=>{
+    let iii="jjfjfjf"
+    image=iii
+    console.log(req.body,image);
+    authModel.findOne({email:req.body.email,username:req.body.username},(err,result)=>{
         if(err){
             console.log(err)
             res.send({message:"signup not succesful",status:false})
         }else{
-            if(result.email){
-                res.send({message:"email has already being used",status:false})
-            }else if(result.username){
-                res.send({message:"username already exists",status:false})
-            }else{
-                let form = authModel(req.body);
-                form.save((err)=>{
-                    if(err){
-                        console.log(err)
-                        res.send({message:"signup not succesful",status:false})
-                    }else{
-                        res.send({message:"signup successfuul",status:true})
-                    }
-                })
-            }
+            console.log(result)
+            // if(result.email){
+            //     res.send({message:"email has already being used",status:false})
+            // }else if(result.username){
+            //     res.send({message:"username already exists",status:false})
+            // }else{
+            //     let form = authModel(req.body,image);
+            //     form.save((err)=>{
+            //         if(err){
+            //             console.log(err)
+            //             res.send({message:"signup not succesful",status:false})
+            //         }else{
+            //             res.send({message:"signup successfuul",status:true})
+            //         }
+            //     })
+            // }
         }
     })
     
@@ -97,6 +101,5 @@ const signin=(req,res)=>{
         }
     })
 }
-
 module.exports={signup,email,signin
 }

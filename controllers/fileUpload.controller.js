@@ -1,3 +1,4 @@
+const addImgModel = require("../models/addimg.model");
 const cloudinary = require("cloudinary");
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
