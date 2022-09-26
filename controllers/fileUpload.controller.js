@@ -59,7 +59,7 @@ const getHome =(req,res)=>{
         res.send({message:"server error",status:false})
        }else{
         console.log(result)
-        res.send({message:"all collections sent",status:true,result:result})
+        res.send({result:result})
        }
     })
 }
