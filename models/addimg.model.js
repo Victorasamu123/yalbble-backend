@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const addImgSchema=mongoose.Schema({
     file:{required:true,type:String},
-    
     category:{required:true,type:String},
     tag:{required:true,type:String},
     description:{required:true,type:String},
