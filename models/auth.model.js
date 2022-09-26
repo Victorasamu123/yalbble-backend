@@ -4,7 +4,8 @@ const authSchema= mongoose.Schema({
     fullname:{required:true,type:String},
     username:{required:true,type:String,unique:true},
     email:{required:true,type:String,unique:true},
-    password:{required:true,type:String}
+    password:{required:true,type:String},
+    profilePicture:{type:String}
 })
 
 const saltRound=10;
