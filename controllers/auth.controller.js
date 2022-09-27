@@ -36,7 +36,7 @@ const email =(req,res)=>{
     <div>
       <h1 style="color: white;">welcome to yalvic app</h1>
       <div>
-        Dear ${req.body.lastname} ${req.body.firstname}
+        Dear ${username}
       </div style="color: white;">
       <div style="color: white;">
         Welcome and thank you for<br>
