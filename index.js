@@ -3,7 +3,6 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary");
-CLOUDINARY_URL=cloudinary;process.env.API_KEY;process.env.API_SECRET;process.env.CLOUD_NAME
 require("dotenv").config()
 app.use(cors());
 app.use(express.urlencoded({extended:true,limit:"50mb"}));
