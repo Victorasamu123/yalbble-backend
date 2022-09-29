@@ -1,5 +1,6 @@
 const addImgModel = require("../models/addimg.model");
 const cloudinary = require("cloudinary");
+const authModel = require("../models/auth.model");
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
     api_key: process.env.API_KEY, 
@@ -40,8 +41,20 @@ const getHome =(req,res)=>{
         res.send({message:"server error",status:false})
        }else{
         console.log(result)
+        authModel.findById({_id:result.userId},(err,ressult)=>{
+          let imgup=ressult
+          if(err){
+            console.log(err)
+          }else{
+            console.log(ressult.username,ressult.profilePicture)
+            
+            res.send({username:ressult.username,profilePicture:ressult.profilePicture})
+          }
+        })
+
         res.send({result:result})
        }
     })
+
 }
 module.exports={getHome,addFile}
