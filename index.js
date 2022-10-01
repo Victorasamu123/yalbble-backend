@@ -19,8 +19,10 @@ mongoose.connect(URI,(err)=>{
 app.use(express.urlencoded({extended:true,limit:"50mb"}));
 const auth = require("./routes/auth.route");
 const fileupload = require("./routes/fileUpload.route");
+const collection = require("./routes/collection.route");
 app.use("/auth",auth);
 app.use("/fileuload",fileupload);
+app.use("/collections",collection);
 app.listen(PORT,()=>{
     console.log(`app listening at port : ${PORT}`)
 })
