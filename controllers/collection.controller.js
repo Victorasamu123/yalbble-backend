@@ -8,7 +8,7 @@ const addviewlist=(req,res)=>{
             res.send({message:"internal server error",status:false});
         }else{
             console.log("save successful");
-            res.send({message:"added successful",status:true});
+            res.send({message:"added successfully",status:true});
         }
     })
 };
