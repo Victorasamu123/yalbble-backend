@@ -41,17 +41,6 @@ const getHome =(req,res)=>{
         res.send({message:"server error",status:false})
        }else{
         console.log(result)
-        authModel.findById({_id:result.userId},(err,ressult)=>{
-          let imgup=ressult
-          if(err){
-            console.log(err)
-          }else{
-            console.log(ressult.username,ressult.profilePicture)
-            
-            res.send({username:ressult.username,profilePicture:ressult.profilePicture})
-          }
-        })
-
         res.send({result:result})
        }
     })
