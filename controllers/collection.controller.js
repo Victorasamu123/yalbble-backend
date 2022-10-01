@@ -1,6 +1,5 @@
 const collectionModel = require("../models/collection.model");
-
-const addcollections=(req,res)=>{
+const addviewlist=(req,res)=>{
     console.log(req.body);
     let newCollections = new collectionModel(req.body)
     newCollections.save((err)=>{
@@ -12,5 +11,16 @@ const addcollections=(req,res)=>{
     })
 };
 
+const getviewlists=(req,res)=>{
+    console.log(req.body);
+    collectionModel.find({userId:req.body.userId},(err,result)=>{
+       if(err){
+        console.log(err)
+       }else{
+        res.send({resulr:result});
+       }
+    })
+}
 
-module.exports= {addcollections};
+
+module.exports= {addviewlist,getviewlists};

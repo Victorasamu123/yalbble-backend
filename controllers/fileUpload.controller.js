@@ -27,7 +27,7 @@ const addFile =(req,res)=>{
               console.log(err)
             }else{
               console.log("save")
-                res.send({message:"collections uploaded successfully",status:true})
+                res.send({message:"design uploaded successfully",status:true})
             }
         })
     }

@@ -22,7 +22,7 @@ const fileupload = require("./routes/fileUpload.route");
 const collection = require("./routes/collection.route");
 app.use("/auth",auth);
 app.use("/fileuload",fileupload);
-app.use("/collections",collection);
+app.use("/viewlists",collection);
 app.listen(PORT,()=>{
     console.log(`app listening at port : ${PORT}`)
 })

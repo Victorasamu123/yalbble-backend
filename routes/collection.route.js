@@ -1,7 +1,8 @@
 const express = require("express");
-const { addcollections } = require("../controllers/collection.controller");
+const { addviewlist, getviewlists } = require("../controllers/collection.controller");
 const collection = express.Router();
 
-collection.post("/addcollections",addcollections)
+collection.post("/addviewlist",addviewlist);
+collection.post("/getviewlists",getviewlists);
 
 module.exports= collection;
