@@ -20,7 +20,7 @@ const getviewlists=(req,res)=>{
         console.log(err)
        }else{
         console.log(result)
-        res.send({resulr:result});
+        res.send({result:result});
        }
     })
 }
