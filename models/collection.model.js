@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const collectionSchema=mongoose.Schema({
-        _id:{required:true,type:String},
-        file:{required:true,type:String},
-        category:{required:true,type:String},
-        tag:{required:true,type:String},
-        description:{required:true,type:String},
-        userId:{required:true,type:String}
+        _id:{type:String},
+        file:{type:String},
+        category:{type:String},
+        tag:{type:String},
+        description:{type:String},
+        userId:{type:String}
 });
 
 const collectionModel= mongoose.model("collection_page",collectionSchema);

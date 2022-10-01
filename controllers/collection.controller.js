@@ -4,9 +4,11 @@ const addviewlist=(req,res)=>{
     let newCollections = new collectionModel(req.body)
     newCollections.save((err)=>{
         if(err){
-            console.log(err)
+            console.log(err);
+            res.send({message:"internal server error",status:false});
         }else{
             console.log("save successful");
+            res.send({message:"added successful",status:true});
         }
     })
 };
