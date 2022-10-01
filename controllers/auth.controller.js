@@ -98,5 +98,9 @@ const signin=(req,res)=>{
         }
     })
 }
-module.exports={signup,email,signin
+
+const updateprofilepics=()=>{
+
+}
+module.exports={signup,email,signin,updateprofilepics
 }

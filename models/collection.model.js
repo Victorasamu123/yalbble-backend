@@ -6,8 +6,6 @@ const collectionSchema=mongoose.Schema({
     tag:{type:String},
     description:{type:String},
     userId:{type:String},
-    _v:{type:Number},
-    _id:{type:String},
 });
 
 const collectionModel= mongoose.model("collection_page",collectionSchema);
