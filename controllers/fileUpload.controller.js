@@ -18,11 +18,18 @@ const addFile =(req,res)=>{
         res.send({message:"upload failed",status:false})
 
     }else{
-        console.log(result.secure_url)
-        const myImage= result.secure_url
-        let imgForm= new addImgModel({...req.body,file:myImage});
-        console.log(imgForm)
-        imgForm.save((err)=>{
+      addImgModel.findOne({category:req.body.category,tag:req.body.tag,description:req.body.description,userId:req.body.userId},(err,resulttt)=>{
+        if(err){
+          console.log(err)
+        }else{
+          if(resulttt){
+            res.send({message:"collection already exists",status:true})
+          }else{
+            console.log(result.secure_url)
+            const myImage= result.secure_url
+            let imgForm= new addImgModel({...req.body,file:myImage});
+            console.log(imgForm)
+            imgForm.save((err)=>{
             if(err){
               console.log(err)
             }else{
@@ -30,6 +37,10 @@ const addFile =(req,res)=>{
                 res.send({message:"design uploaded successfully",status:true})
             }
         })
+          }
+        }
+      })
+        
     }
    });
    

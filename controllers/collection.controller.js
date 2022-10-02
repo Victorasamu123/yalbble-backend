@@ -2,7 +2,7 @@ const collectionModel = require("../models/collection.model");
 const addviewlist=(req,res)=>{
     console.log(req.body);
     let{file,category,tag,description,userId}=req.body
-    collectionModel.findOne({file:file,category:category,tag:tag,description:description},(err,result)=>{
+    collectionModel.findOne({file:file,category:category,tag:tag,description:description,userId:userId},(err,result)=>{
         if(err){
             console.log(err);
             res.send({message:"internal server error",status:false});
