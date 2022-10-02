@@ -1,7 +1,8 @@
 const collectionModel = require("../models/collection.model");
 const addviewlist=(req,res)=>{
     console.log(req.body);
-    let newCollections = new collectionModel(req.body)
+    let{file,category,tag,description,userId}=req.body
+    let newCollections = new collectionModel({file,category,tag,description,userId})
     newCollections.save((err)=>{
         if(err){
             console.log(err);
