@@ -1,8 +1,8 @@
 const collectionModel = require("../models/collection.model");
 const addviewlist=(req,res)=>{
     console.log(req.body);
-    let{file,category,tag,description,userId}=req.body
-    collectionModel.findOne({file:file,category:category,tag:tag,description:description,userId:userId},(err,result)=>{
+    let{file,category,tag,description,userId,currentuser}=req.body
+    collectionModel.findOne({file:file,category:category,tag:tag,description:description,userId:userId,currentuser:currentuser},(err,result)=>{
         if(err){
             console.log(err);
             res.send({message:"internal server error",status:false});
@@ -10,7 +10,7 @@ const addviewlist=(req,res)=>{
             if(result){
             res.send({message:"design already exists in viewlists",status:true});
             }else{
-                let newCollections = new collectionModel({file,category,tag,description,userId})
+                let newCollections = new collectionModel({file,category,tag,description,userId,currentuser})
                 newCollections.save((err)=>{
                     if(err){
                         console.log(err);
@@ -28,7 +28,7 @@ const addviewlist=(req,res)=>{
 
 const getviewlists=(req,res)=>{
     console.log(req.body);
-    collectionModel.find({userId:req.body.userId},(err,result)=>{
+    collectionModel.find({userId:req.body.userId,currentuser:req.body.currentuser},(err,result)=>{
        if(err){
         console.log(err)
        }else{

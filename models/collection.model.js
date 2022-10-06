@@ -6,6 +6,7 @@ const collectionSchema=mongoose.Schema({
     tag:{type:String},
     description:{type:String},
     userId:{type:String},
+    currentuser:{required:true,type:String}
 });
 
 const collectionModel= mongoose.model("collection_page",collectionSchema);
