@@ -28,7 +28,7 @@ const addviewlist=(req,res)=>{
 
 const getviewlists=(req,res)=>{
     console.log(req.body);
-    collectionModel.find({userId:req.body.userId,currentuser:req.body.currentuser},(err,result)=>{
+    collectionModel.find({userId:req.body.userId},(err,result)=>{
        if(err){
         console.log(err)
        }else{
@@ -37,6 +37,15 @@ const getviewlists=(req,res)=>{
        }
     })
 }
+const deletecollection =(req,res)=>{
+    console.log(req.body);
+    collectionModel.findOneAndDelete({file:file,category:category,tag:tag,description:description,userId:userId,currentuser:currentuser},(err,result)=>{
+        if(err){
+            res.send({message:"internal server error",status:false});
+        }else{
+            res.send({message:"item deleted successfully",status:true});
+        }
+    })
+}
 
-
-module.exports= {addviewlist,getviewlists};
+module.exports= {addviewlist,getviewlists,deletecollection};
