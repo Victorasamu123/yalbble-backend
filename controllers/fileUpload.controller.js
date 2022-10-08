@@ -45,7 +45,26 @@ const addFile =(req,res)=>{
    });
    
 }
-
+const getcollectionpage=(req,res)=>{
+  console.log(req.body);
+  addImgModel.find({userId:req.body.userId},(err,result)=>{
+    if(err){
+      res.send({message:"internal server error",status:false})
+    }else{
+      res.send({message:"result",status:true,result:result})
+    }
+  })
+}
+const deletecollection=()=>{
+  console.log(req.body);
+  addImgModel.findOneAndDelete({file:req.body.file,category:req.body.category,tag:req.body.tag,description:req.body.description,userId:req.body.userId},(err,result)=>{
+    if(err){
+      res.send({message:"internal server error",status:false})
+    }else{
+      res.send({message:"item deleted successfully",status:true});
+    }
+  })
+}
 const getHome =(req,res)=>{
     addImgModel.find((err,result)=>{
        if(err){
@@ -57,4 +76,4 @@ const getHome =(req,res)=>{
     })
 
 }
-module.exports={getHome,addFile}
+module.exports={getHome,addFile,getcollectionpage,deletecollection}

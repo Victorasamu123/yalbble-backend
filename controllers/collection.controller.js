@@ -28,7 +28,7 @@ const addviewlist=(req,res)=>{
 
 const getviewlists=(req,res)=>{
     console.log(req.body);
-    collectionModel.find({userId:req.body.userId},(err,result)=>{
+    collectionModel.find({currentuser:req.body.currentuser},(err,result)=>{
        if(err){
         console.log(err)
        }else{
