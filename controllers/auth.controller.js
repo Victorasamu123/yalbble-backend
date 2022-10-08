@@ -5,24 +5,27 @@ const PASSWORD= process.env.PASSWORD
 let image=""
 const signup=(req,res)=>{
     console.log(req.body);
-    authModel.findOne({email:req.body.email},(err,result)=>{
+    authModel.findOne({ $or: [{email:req.body.email},{username:req.body.username}]},(err,result)=>{
         if(err){
             console.log(err)
-            res.send({message:"signup not succesful",status:false})
+            res.send({message:"internal server error",status:false})
         }else{
             console.log(result)
-            if(!result){
-                let form = authModel(req.body);
+            if(result){
+                if(result.email===req.body.email ){
+                    res.send({message:"email has already been used",status:false})
+                }else if(result.username===req.body.username){
+                    res.send({message:"username already exists",status:false})
+                }
+            }else{
+                let form=new authModel(req.body)
                 form.save((err)=>{
                     if(err){
-                        console.log(err)
-                        res.send({message:"signup not succesful",status:false})
+                        res.send({message:"signup failed",status:false})
                     }else{
-                        res.send({message:"signup successfuul",status:true})
+                        res.send({message:"signup successful",status:true})
                     }
                 })
-            }else{
-                    res.send({message:"email has already being used or username already exists",status:false})
             }
         
         }
