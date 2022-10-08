@@ -102,8 +102,15 @@ const signin=(req,res)=>{
     })
 }
 
-const updateprofilepics=()=>{
-
+const profilepage=(req,res)=>{
+    console.log(req.body);
+    authModel.findById({_id:req.body.userId},(err,result)=>{
+        if(err){
+            res.send({message:"internal server error",status:false})
+        }else{
+            res.send({message:"result",result:result,status:true})
+        }
+    })
 }
-module.exports={signup,email,signin,updateprofilepics
+module.exports={signup,email,signin,profilepage
 }
