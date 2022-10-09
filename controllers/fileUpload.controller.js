@@ -57,7 +57,7 @@ const getcollectionpage=(req,res)=>{
 }
 const deletecollection=()=>{
   console.log(req.body);
-  addImgModel.findOneAndDelete({file:req.body.file,category:req.body.category,tag:req.body.tag,description:req.body.description,userId:req.body.userId},(err,result)=>{
+  addImgModel.findByIdAndDelete({_id:req.body._id},(err,result)=>{
     if(err){
       res.send({message:"internal server error",status:false})
     }else{
