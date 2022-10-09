@@ -39,7 +39,7 @@ const getviewlists=(req,res)=>{
 }
 const deletecollection =(req,res)=>{
     console.log(req.body);
-    collectionModel.findOneAndDelete({file:file,category:category,tag:tag,description:description,userId:userId,currentuser:currentuser},(err,result)=>{
+    collectionModel.findByIdAndDelete({_id:req.body._id},(err,result)=>{
         if(err){
             res.send({message:"internal server error",status:false});
         }else{
