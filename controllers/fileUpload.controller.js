@@ -55,7 +55,7 @@ const getcollectionpage=(req,res)=>{
     }
   })
 }
-const deletecollection=()=>{
+const deletecollection=(req,res)=>{
   console.log(req.body);
   addImgModel.findByIdAndDelete({_id:req.body._id},(err,result)=>{
     if(err){
