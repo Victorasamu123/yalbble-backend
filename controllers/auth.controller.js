@@ -133,7 +133,7 @@ const profileUpdate=(req,res)=>{
                 
                     }else{
                         console.log("File upload")
-                        res.send({message:"profile picture update successfull",status:true})
+                        res.send({message:"profile picture update successfull",status:true,result:result})
                     }
                 })
             })
