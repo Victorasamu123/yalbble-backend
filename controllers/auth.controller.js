@@ -2,6 +2,7 @@ const authModel = require("../models/auth.model");
 const nodemailer = require('nodemailer');
 const jwt = require("jsonwebtoken");
 const PASSWORD= process.env.PASSWORD
+const cloudinary = require("cloudinary");
 let image=""
 const signup=(req,res)=>{
     console.log(req.body);
@@ -112,5 +113,32 @@ const profilepage=(req,res)=>{
         }
     })
 }
-module.exports={signup,email,signin,profilepage
+const profileUpdate=(req,res)=>{
+    console.log(req.body);
+    const myFile = req.body.file
+    cloudinary.v2.uploader.upload(myFile,(err,result)=>{
+        if(err){
+            console.log("File did not upload")
+            res.send({message:"upload failed",status:false})
+    
+        }else{
+            const myImage= result.secure_url
+            authModel.findById(req.body.userId,(err,result)=>{
+                users=result
+                user.profilePicture=myImage
+                authModel.findByIdAndUpdate(req.body.userId,(err,result)=>{
+                    if(err){
+                        console.log("File did not upload")
+                        res.send({message:"internal server error",status:false})
+                
+                    }else{
+                        console.log("File upload")
+                        res.send({message:"profile picture update successfull",status:true})
+                    }
+                })
+            })
+        }
+    })
+}
+module.exports={signup,email,signin,profilepage,profileUpdate
 }

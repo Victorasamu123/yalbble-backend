@@ -64,6 +64,7 @@ const deletecollection=(req,res)=>{
       res.send({message:"item deleted successfully",status:true});
     }
   })
+  
 }
 const getHome =(req,res)=>{
     addImgModel.find((err,result)=>{
