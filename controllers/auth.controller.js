@@ -125,8 +125,8 @@ const profileUpdate=(req,res)=>{
             const myImage= result.secure_url
             authModel.findById(req.body.userId,(err,result)=>{
                 users=result
-                user.profilePicture=myImage
-                authModel.findByIdAndUpdate(req.body.userId,(err,result)=>{
+                users.profilePicture=myImage
+                authModel.findByIdAndUpdate(req.body.userId,users,(err,result)=>{
                     if(err){
                         console.log("File did not upload")
                         res.send({message:"internal server error",status:false})
