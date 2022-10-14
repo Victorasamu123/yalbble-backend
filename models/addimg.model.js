@@ -7,7 +7,8 @@ const addImgSchema=mongoose.Schema({
     description:{required:true,type:String},
     userId:{required:true,type:String},
     username:{required:true,type:String},
-    profilePicture:{required:true,type:String}
+    profilePicture:{required:true,type:String},
+    email:{required:true,type:String}
 });
 
 const addImgModel = mongoose.model("add_image_collections",addImgSchema);

@@ -89,7 +89,7 @@ const signin=(req,res)=>{
                         if(same){
                             let token =jwt.sign({email},"nodejs",{expiresIn:"2h"})
                             console.log(token)
-                            res.send({message:"User Signed in Successfully",status:true,token,user_id:result._id,statuss:result.status,username:result.username,profilePicture:result.profilePicture})
+                            res.send({message:"User Signed in Successfully",status:true,token,user_id:result._id,statuss:result.status,username:result.username,profilePicture:result.profilePicture,email:result.email})
                         }else{
                             res.send({message:"Wrong Password",status:false})
                         }
