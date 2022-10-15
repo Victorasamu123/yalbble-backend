@@ -18,7 +18,7 @@ const addFile =(req,res)=>{
         res.send({message:"upload failed",status:false})
 
     }else{
-      addImgModel.findOne({category:req.body.category,tag:req.body.tag,description:req.body.description,userId:req.body.userId,username:req.body.username,profilePicture:req.body.profilePicture},(err,resulttt)=>{
+      addImgModel.findOne({category:req.body.category,tag:req.body.tag,description:req.body.description,userId:req.body.userId,username:req.body.username,profilePicture:req.body.profilePicture,email:req.body.email},(err,resulttt)=>{
         if(err){
           console.log(err)
         }else{
