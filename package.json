@@ -1,6 +1,6 @@
 {
   "name": "yalbble-backend",
-  "version": "2.6.8",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "engines":{
